@@ -1,0 +1,119 @@
+---
+title: "PS945 Research Paper"
+author: "Peter M. Erickson"
+date: |
+  `r format(Sys.time(), '%B %d, %Y')`
+abstract: |
+  
+  _This dissertation explores changes in how the contemporary military institution intervenes in domestic politics. I advance a theory which argues that normative beliefs of military officers regarding political activism is a result of two interacting factors: the level of domestic political polarization within a society, and the degree of prestige and credibility the military holds. To support my argument, I trace changes in levels and types of distinct forms of political activism by military officers, including authoring opinion-editorials in major newspapers, as domestic polarization and military institutional credibility rises. I ultimately argue that the increasing political activism of military leaders is not merely a response to the hyper-partisanship present in the current political atmosphere, but rather the logical outworking of trends involving the prestige of the military institution as well as political polarization that have been building for decades. I conclude by describing the implications of changing beliefs among military leaders regarding the role the military should have in domestic politics. This dissertation contributes to the fields of international relations and civil-military relations by advancing an empirical and historical analysis of a growing phenomenon: military leaders intervening in domestic American politics. _  
+  
+geometry: margin = 1.15in              # margin widths
+fontsize: 12pt                         # text size
+bibliography: PS945.bib                # bibliography file
+biblio-style: authoryear               # citation style
+urlcolor: blue                         # links to external URLs
+citecolor: black                       # links to bibliography
+linkcolor: magenta                     # internal figures, footnotes, etc.
+indent: true                          # paragraph format
+                                       # true for indented paragraphs
+                                       
+header-includes:
+    - \usepackage{setspace}
+    - \usepackage{multirow}
+    - \usepackage{indentfirst}
+    
+output: 
+  bookdown::pdf_document2:
+    keep_tex: true
+    latex_engine: pdflatex
+    number_sections: false
+    toc: false
+    fig_caption: true
+    citation_package: biblatex
+    includes: 
+      in_header: 
+        - latex-preamble.tex
+  bookdown::htmldocument2: default
+  bookdown::word_document2:
+      toc: false
+---
+
+\doublespacing 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r, include = FALSE, echo = FALSE}
+library("here")       # file paths
+library("tidyverse")  # workhorse package
+library("tidylog")
+library("kableExtra")
+library("knitr")
+library("ggdag")
+library("dagitty")
+library("gridExtra")
+library("broom")
+library("dplyr")
+library("reshape2")
+```
+\newpage
+
+# Introduction and Research Question
+
+In recent years, a number of scholars, practitioners, and pundits have expressed concerns regarding the growth of the US military's prestige within American society, as well as its increasing influence in the National Security community [@bacevich_breach_2014; @schake_warriors_2016]. These authors argue that since the end of the draft and the beginning of the era of an all-volunteer military, an unhealthy "gap" has formed between the military and various portions of society as American citizens feel and actually are increasingly disconnected from its military [@feaver_soldiers_2001; @schake_warriors_2016]. These authors further express concern that such a disconnect has resulted in a multitude of concerning consequences, including the militarization of foreign policy, the continuation of conflict overseas with no end in sight, and perhaps most consequential, the erosion or weakening of civilian control of the military, which is itself an important aspect of democracy.  
+
+Institutionally, the military indeed commands an enormous degree of influence and respect within the national security community and society at large. For instance, according to Gallup public opinion polls, 72 percent of Americans indicated that they trust the military a "great deal" or quite a lot" - the most of any institution, to include Congress (13%), the Presidency (39%), the police (48%), the Supreme Court (40%), and the church/organized religion (42%) [@gallup_polls_confidence_2020]. Moreover, trends in trust of various American institutions over time reveal that whereas trust in the military has generally increased over the past 45 years, trust in the other institutions have generally declined or remained the same [todo-make a graph of this and point out which are which]. These trends point to and underscore the concerns regarding the increasing prestige of America's armed forces.
+
+While it is somewhat clear that the military's growing prestige has indeed resulted in it's outsized influence on the formulation and execution of American national security policy, it is less clear if and how changes in prestige and influence have impacted the political behavior of the military. Examining this link between growing prestige and political behavior is important, however, because by normative standards, the military exists as an apolitical and non-partisan institution [@huntington_soldier_1957]. Yet any link between prestige and political behavior must account for the fact that both prestige and political behavior contain both institutional and individualistic components. That is, just as the degree of trust that the public places in the institutional military can and does change, specific military leaders can and often do stand out as being particularly trustworthy or untrustworthy, popular or unpopular, and even while some military leaders might engage in particular forms of political behavior, others may not.  
+
+This paper proceeds in four parts. First, the paper lays the theoretical groundwork for understanding the links between prestige and political behavior, and situate this link within the context of the military. In doing so, the paper will tie in to the international relations literature regarding leader culpability and reputation. In the second part of the paper, I will formulate a research design in which the prestige or credibility of high level military leaders serves as the main independent variable, and various forms of political behavior serve as the main dependent variable. The third section will present and analyze the results of a mixed-methods analysis that focuses on the Chairman of the Joint Chiefs of Staff and military service Chiefs since the beginning of the Vietnam War. The fourth section will discuss the results and implications for future research on this topic. The main finding of this paper is that the most prestigious officers are also the most politically active, and that those officers who have suffered a setback to their reputation tend to be the least politically active. While such a central finding is not necessarily counterintuitive, a second and perhaps more important finding is that few if any officers have suffered reputational setbacks in the post-9/11 era, which is perhaps partly responsible for the reason that the post-9/11 era of officers is more politically active than previous generations of senior military leaders.
+
+# A Theory of Military Prestige and Reputation
+
+The goal of this section of the paper is to summarize the historical trends in the military's growing prestige and credibility, and then to link these trends to a specific but important literature in political science regarding leader reputation and culpability. The linkages between these literatures are surprisingly rarely in conversation. Though Presidents are at the top of the government food chain, they are not the only public servants whose reputations carry significant impacts. Just as a President's reputation has the potential to impact foreign and domestic public opinion, so too can the military's (and a particular military leader's) reputation impact what people think of the military. Moreover, if in fact one of the primary concerns of civil-military relations is, as Peter Feaver argues, ensuring that the military is strong enough to meet external threats without threatening the polity itself [@feaver_civil-military_1996,], then it is important to understand the factors that contribute to the reputation of the military and how those factors impact military behavior. 
+
+While this paper does not set out to explore the myriad factors that impact the credibility and reputation of the military, it will focus on two specific sources of growing military prestige over the past several decades. The first source is institutional, and stems from the military's growing influence within the national security establishment, and the second is societal, referring to an increasing distance within American society between those who have served in the military and those who have not. Both of these trends, which have largely overlapped, have ultimately created a military institution that is more influential and more revered than at any point in recent American history. For good cause, scholars, military officers, and politicians have noticed and expressed concerns about these developments.   
+
+## The Military's Expanding Institutional Role and Influence
+
+Generals and Admirals have long been considered important players in the national security establishment. This has been especially the case, however, in the years since World War Two, when the US military and its leadership played arguably the central role in defeating the armed forces of Germany and later, Japan. Indeed, in both the European and Pacific theaters of war, the US military - its leaders and the led - ultimately prevailed against the nation's enemies. In the immediate years after World War Two, it became clear that the strategic situation facing the United States had changed considerably. Now locked in a Cold War with the Soviet Union, the US possessed an incredible advantage in raw power and superiority over the world's other industrialized nations, most of whom, such as Great Britain, France, and Germany, had become far weaker as a result of the War. 
+
+Recognizing the role that the miltary would play in helping to maintain America's advantage in the world, several institutional reforms were undertaken in Washington D.C. that were aimed to unify the national security establishment, and to ultimately make the government more effective. The National Security Act was perhaps the most significant of these reforms. Signed by President Harry Truman in 1947, this legislation sought to unify the entire defense and intelligence establishments. The legislation created new institions, including the National Security Council, the Central Intelligence Agency, and the Air Force as a separate military service from the Army [@noauthor_look_nodate]. The National Security Act also merged the Departments of War and the Navy into the Department of Defense under one civilian leader, the newly-established Secretary of Defense [@noauthor_look_nodate]. The legislation also codified the position of Chairman of the Joint Chiefs of Staff who would now be the President's principal military advisor, an improvement to the existing several-member Joint Chiefs of Staff [@noauthor_look_nodate,]. So impactul was the National Security Act that fifty years after its signing, President Bill Clinton stated that as a result of the institions created by the National Security Act and the people who had served in them, a generation had "helped to secure the peace and prosperity that America enjoys...the success of their efforts and of the historic legislation enacted half a century ago is reflected in an outstanding record of achievement: nuclear war averted, the Cold War won, and the nations of the world turning to democracy and free markets" [@clinton_weekly_1997].
+
+Goldwater Nichols of 1986, Combatant Commands, etc.  2-4 paras
+
+War also matters.  2-4 paras
+
+ 
+## Growing Distance Between American Society and its Military  
+
+6-8 paras (borrow heavily from your prospectus)
+
+# Research Design
+
+In Chapter 4, I plan to conduct a mixed-methods analysis of the beliefs of senior military officers regarding the role of the military in politics in historical perspective. In order to do this, I plan to examine the behavior of individual high ranking officers - in fact, the highest ranking officers - Chairmen of the Joint Chiefs of Staff, and military service chiefs (such as the Chief of Staff of the Army, the Chief of Naval Operations, the Commandant of the Marine Corps, the Chief of Staff of the Air Force, and the Commandant of the Coast Guard) since World War Two. Examining the behavior of these leaders (roughly 120 in total), particularly during their tenure in the position as head of their respective services (or the military in the case of the Chairman of the Joint Chiefs of Staff) and in each's retirement years, will shed light on what each leader thought about the military's role in politics, and whether each officer lived out such beliefs in their retirement years.
+
+Focusing on the highest ranking military officers is especially important, as it enables a researcher to examine if there have been changes in what these leaders - as the "stewards of the profession" [@us_department_of_the_army_adp_2019, p. 1-9] - have thought regarding the military's role in politics.  Additionally, focusing on the individual enables the researcher to control for individual-level impacts, such as shocks to a specific officer's level of prestige or credibility, that may impact the dependent variable, individual acts of political behavior by military elites. The hypotheses that I wish to examine and test in this chapter include:
+
+_H6: Officers who endure a decline in either their individual or institutional level of prestige will be less politically active than those who experience either a relative boost or no change._
+
+_H7: When polarization and military prestige are low, senior military elites are less likely to weigh in on turbulent domestic political events than when polarization and military prestige are high._
+
+_H8: As polarization and prestige increase, there will be a gap between the "role beliefs" espoused by senior military leaders while on active duty and the "role beliefs" these same leaders live out during retirement._
+
+
+The dependent variables in this chapter will include political acts of behavior or seemingly political behavior, to include: writing opinion editorials (building off of data in Chapter 3), providing congressional testimony (on active duty as well as during retirement), and weighing in on turbulent political events in the form of speeches, articles, commentary, etc.^[I would include other actions, such as endorsing a Presidential candidate for office or speaking at a political convention, but these more "obvious" forms of political behavior did not start until at the late 1980s (publicly endorsing a presidential candidate), and even later (for speaking at a national political convention). Thus, I need to account for this type of "discontinuity" in my results, i.e. somewhere in the late 1980s, military officers began these particular types of behavior in earnest.] I will also record the occupation or primary role that each officer held in retirement (for example, political appointee, private citizen, defense industry consultant, etc.) The officer's post-retirement occupation is another indicator of how politically active the officer decided to be. 
+
+For independent variables, I have to control again for the aggregate levels of institutional military prestige and political polarization, both of which data is available for using Gallup public opinion polling data and DW-NOMINATE scores. But in this chapter, since I am examining the individual officer, I will also control for whether a particular military officer experienced a relative decline, boost, or "no change" to his/her individual status of military prestige while serving in their senior military role. This will require coding for whether the officer experienced reputational damage as a result of an exogenous event, such as: being fired by a President (likely resulting in a loss of prestige), enjoying a tremendous increase in public opinion for directing successful combat operations (likely resulting in an increase in prestige) or, conversely, unsuccessful combat operations (loss of prestige) during war or a major military engagement. Alternatively, I suspect that the vast majority of these senior officers experience neither a boost or decline in individual prestige during their tenure as senior military leaders, i.e. each does his or her duty and then retires. But I suspect that the data will nonetheless include sufficient variation in this variable, over time, that there may be at least a correlation between an officer's individual reputation and their post-retirement political activity.  
+
+Obtaining the data for these dependent variables will require classifying what primary role the officer played in retirement (i.e. political appointee, regular civilian, corporate board member), searching the congressional record by the officer's last name and categorizing the number and type of congressional hearings the officer participated in, both while on active duty and during retirement, and searching historical newspaper databases for any articles or speeches the author might have given, both on active duty and during retirement, particularly regarding turbulent or polarizing events (such as implementing the end to segregation (both within the military and in society), national protests during 1968, the response to Hurricane Katrina, etc.). ^[I need to determine which events these are. Similar to the ICB, I have to find the 30 or so "most turbulent domestic events" that have occurred in the United States in the past 70 years, i.e. protests and riots, etc., and focus my research to answer the question, what did these military leaders I am examining have to say about these events? I am scouring the American politics literature for a database or a consensus of what these events are or might be, but as of yet, I have not found one.]
+
+I am not yet clear whether a strict quantitative or qualitative analysis, or a mixture of both, is most appropriate for this chapter. I think that one of the issues this will hinge on is the degree of clarity with which some of the coding decisions can and should be made. In the international relations literature, leader and state reputation is a topic that has been studied, particularly regarding the length of tenure for heads of state as a result of initiation of conflict [@croco_deciders_2011; @croco_war_2016]. What made these studies possible, in my opinion, was clear selection criteria, and particularly the use of data sets involving Militarized Interstate Disputes or International Crises proved helpful. Unfortunately, to my knowledge, there is not a similar data set in the American politics literature that consists of relevant domestic turbulent events of the 20th century, for instance. I am potentially up to the task of building such a list myself, but would require some assistance from an American Politics scholar to do so in a way that passes muster for academic rigor. For example, I can imagine that I would want to include all instances in which military force was used domestically, instances in which there was large, sustained use of the military for responding to domestic natural disasters, and instances in which there was rioting, etc. But there may be more that I need to include, and I would want to bounce this idea off of other scholars to determine how to appropriately selecting the right events. 
+
+# Research Design
+
+# Analysis
+
+# Implications
